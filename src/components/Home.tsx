@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Square extends React.Component {
+class Square extends React.Component<{squareNumber: number}> {
     render() {
         return (
             <button className="square">
@@ -12,8 +12,8 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
-    renderSquare(i) {
-        return <Square />;
+    renderSquare(i: number) {
+        return <Square squareNumber={i}/>;
     }
 
     render() {
