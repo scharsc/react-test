@@ -1,56 +1,47 @@
 import React, {useState} from 'react';
 
-
 type XorO = "" | "X" | "O";
 
 interface SquareProps
 {
-    squareNumber: number;
-}
-
-interface SquareState
-{
     xorO: XorO;
+    onClick: () => void;
 }
 
-class Square extends React.Component<SquareProps, SquareState> {
+class Square extends React.Component<SquareProps, {}> {
 
     constructor(props: SquareProps)
     {
         super(props);
-        this.state = { xorO: ""};
     }
     render() {
         return (
-            <button className="square" onClick={ () => this.setToX() }>
-                {this.state.xorO}
+            <button className="square" onClick={ this.props.onClick }>
+                {this.props.xorO}
             </button>
         );
-    }
-    setToX()
-    {
-        this.setState( { xorO: "X" } );
     }
 }
 
 interface BoardState
 {
     squares: XorO[];
+    nextState: XorO;
 }
 
 class Board extends React.Component<{},BoardState> {
     constructor()
     {
         super({});
-        this.state = { squares: Array<XorO>(9).fill("") }
+        this.state = { squares: Array<XorO>(9).fill(""), nextState: "X" }
     }
+
     renderSquare(i: number) {
-        return <Square squareNumber={i}/>;
+        return <Square xorO={this.state.squares[i]} onClick={ () => this.onCardClicked(i) }/>;
     }
 
     render() {
-        const status = 'Next player: X';
-
+        const status = 'Next player: ' + this.state.nextState;
         return (
             <div>
                 <div className="status">{status}</div>
@@ -71,6 +62,17 @@ class Board extends React.Component<{},BoardState> {
                 </div>
             </div>
         );
+    }
+
+    onCardClicked( i: number )
+    {
+        if (this.state.squares[i] != "" )
+            return;
+        const squares = this.state.squares.slice();
+        squares[i] = this.state.nextState;
+        this.setState({ squares: squares });
+        const nextState = this.state.nextState == "X" ? "O" : "X";
+        this.setState( {nextState: nextState} );
     }
 }
 
