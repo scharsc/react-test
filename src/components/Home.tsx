@@ -8,19 +8,13 @@ interface SquareProps
     onClick: () => void;
 }
 
-class Square extends React.Component<SquareProps, {}> {
-
-    constructor(props: SquareProps)
-    {
-        super(props);
-    }
-    render() {
-        return (
-            <button className="square" onClick={ this.props.onClick }>
-                {this.props.xorO}
-            </button>
-        );
-    }
+const Square: React.FC<SquareProps> = (props: SquareProps) =>
+{
+    return (
+        <button className="square" onClick={props.onClick}>
+            {props.xorO}
+        </button>
+    );
 }
 
 interface BoardState
@@ -68,11 +62,20 @@ class Board extends React.Component<{},BoardState> {
     {
         if (this.state.squares[i] != "" )
             return;
+
+        this.setNextStateToBoard(i);
+        this.toogleNextState();
+    }
+
+    private toogleNextState() {
+        const nextState = this.state.nextState == "X" ? "O" : "X";
+        this.setState({ nextState: nextState });
+    }
+
+    private setNextStateToBoard(i: number) {
         const squares = this.state.squares.slice();
         squares[i] = this.state.nextState;
         this.setState({ squares: squares });
-        const nextState = this.state.nextState == "X" ? "O" : "X";
-        this.setState( {nextState: nextState} );
     }
 }
 
