@@ -35,7 +35,11 @@ class Board extends React.Component<{},BoardState> {
     }
 
     render() {
-        const status = 'Next player: ' + this.state.nextState;
+        const winner = this.isThereAWinner();
+
+        const status =  winner != "" ?  
+                            "Winner is:" + winner :  
+                            'Next player: ' + this.state.nextState;
         return (
             <div>
                 <div className="status">{status}</div>
@@ -58,13 +62,72 @@ class Board extends React.Component<{},BoardState> {
         );
     }
 
-    // private isThereAWinner(): XorO 
-    // {
-
-    // }
-
-    onCardClicked( row: number, column: number )
+    private isThereAWinner(): XorO 
     {
+        const val = [this.isThereAWinnerInRows(),
+        this.isThereAWinnerInColumns(),
+        this.isThereAWinnerInDiagOne(),
+        this.isThereAWinnerInDiagTwo()].find( e => e != "" );
+        return val == undefined? "" : val;
+    }
+
+    private isThereAWinnerInDiagTwo(): XorO {
+        const diagTwoCoordinatesFunc = (i: number): [number, number] => {
+            return [i, 2-i];
+        }
+        return this.isThereAWinnerInCoordinates(diagTwoCoordinatesFunc);
+    }
+
+    private isThereAWinnerInDiagOne(): XorO {
+        const diagOneCoordinatesFunc = (i: number): [number, number] => {
+            return [i,i];
+        }
+        return this.isThereAWinnerInCoordinates( diagOneCoordinatesFunc );
+    }
+
+    private isThereAWinnerInRows(): XorO {
+        const getRowIndicesFuncForColumn = (row: number): (i: number) => [number, number] => {
+            return (i: number) => [i, row];
+        }
+        for (let column = 0; column < 3; ++column) {
+            const value = this.isThereAWinnerInCoordinates(getRowIndicesFuncForColumn(column));
+            if (value != "")
+                return value;
+        }
+        return "";
+    }
+
+    private isThereAWinnerInColumns(): XorO
+    {
+        const getColumnIndicesFuncForRow = (column: number): (i: number) => [number, number] => {
+            return (i: number) => [column, i];
+        }
+        for (let row = 0; row < 3; ++row) {
+            const value = this.isThereAWinnerInCoordinates(getColumnIndicesFuncForRow(row));
+            if (value != "")
+                return value;
+        }
+        return "";
+    }
+
+    private isThereAWinnerInCoordinates(partialCoordinatesFunc: (i: number) => [number, number] ): XorO 
+    {
+        const valueAtIndex = ( i: number ) =>{ 
+            const [column, row] = partialCoordinatesFunc(i);
+            return this.state.squares[column][row]; 
+        };
+        let value = valueAtIndex(0);
+        for( let i = 1; i<3; ++i )
+            if( valueAtIndex(i) != value )
+                return "";
+    
+        return value;
+    }
+
+    private onCardClicked( row: number, column: number )
+    {
+        if (this.isThereAWinner() != "" )
+            return;
         if (this.state.squares[row][column] != "" )
             return;
 
