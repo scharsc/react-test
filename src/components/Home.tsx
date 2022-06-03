@@ -5,27 +5,30 @@ interface SquareProps
 {
     squareNumber: number;
 }
-type XorO = ""|"X"|"O" ;
+
+interface SquareState
+{
+    xorO: ""|"X"|"O" ;
+}
 
 
-
-class Square extends React.Component<SquareProps, XorO> {
+class Square extends React.Component<SquareProps, SquareState> {
 
     constructor(props: SquareProps)
     {
         super(props);
-        this.state = {isXOrM: "",};
+        this.state = { xorO: ""};
     }
     render() {
         return (
             <button className="square" onClick={ () => this.setToX() }>
-                {this.mXorO}
+                {this.state.xorO}
             </button>
         );
     }
     setToX()
     {
-        this.state. mXorO = "X";
+        this.state ={ xorO: "X" };
     }
 }
 
