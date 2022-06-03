@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
-class Square extends React.Component<{squareNumber: number}> {
+interface SquareProps
+{
+    squareNumber: number;
+}
+type XorO = ""|"X"|"O" ;
+
+
+
+class Square extends React.Component<SquareProps, XorO> {
+
+    constructor(props: SquareProps)
+    {
+        super(props);
+        this.state = {isXOrM: "",};
+    }
     render() {
         return (
-            <button className="square">
-                {/* TODO */}
+            <button className="square" onClick={ () => this.setToX() }>
+                {this.mXorO}
             </button>
         );
+    }
+    setToX()
+    {
+        this.state. mXorO = "X";
     }
 }
 
