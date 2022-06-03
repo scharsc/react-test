@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
 
+type XorO = "" | "X" | "O";
+
 interface SquareProps
 {
     squareNumber: number;
@@ -8,9 +10,8 @@ interface SquareProps
 
 interface SquareState
 {
-    xorO: ""|"X"|"O" ;
+    xorO: XorO;
 }
-
 
 class Square extends React.Component<SquareProps, SquareState> {
 
@@ -28,11 +29,21 @@ class Square extends React.Component<SquareProps, SquareState> {
     }
     setToX()
     {
-        this.state ={ xorO: "X" };
+        this.setState( { xorO: "X" } );
     }
 }
 
-class Board extends React.Component {
+interface BoardState
+{
+    squares: XorO[];
+}
+
+class Board extends React.Component<{},BoardState> {
+    constructor()
+    {
+        super({});
+        this.state = { squares: Array<XorO>(9).fill("") }
+    }
     renderSquare(i: number) {
         return <Square squareNumber={i}/>;
     }
