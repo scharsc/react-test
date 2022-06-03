@@ -96,12 +96,23 @@ class Game extends React.Component<{}, GameState > {
     }
     render() {
         const lastBoardState = this.getLastBoardState();
-
         const winner = BoardStateChecker.isThereAWinner( lastBoardState.squares );
 
         const status = winner != "" ?
             "Winner is:" + winner :
             'Next player: ' + lastBoardState.nextState;
+
+        const history = this.state.boardHistory;
+
+        const moves = history.map( (step,move ) => 
+        {
+            const desc = move ? "Goto move #" + move : "Go to game start";
+            return (
+                <li key={move}>
+                    <button onClick={ () => this.jumpTo(move) }>{desc}</button>
+                </li>
+            );
+        });
 
         return (
             
@@ -112,13 +123,21 @@ class Game extends React.Component<{}, GameState > {
                 <div className="game-info">
                     <div>{status}</div>
                     <ol>
-                        <li>fasdf</li>
+                        {moves}
                     </ol>
                 </div>
             </div>
         );
     }
 
+    jumpTo(move: number)
+    {
+        const boardHistory = this.state.boardHistory;
+        const newBoardHistory = boardHistory.slice(0, move +1 );
+        this.setState({ boardHistory: newBoardHistory });
+    }
+
+    
     onClick(that: Game, column: number, row: number )
     {
         const lastBoardState = that.getLastBoardState();
