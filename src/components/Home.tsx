@@ -19,7 +19,7 @@ const Square: React.FC<SquareProps> = (props: SquareProps) =>
 
 interface BoardState
 {
-    squares: XorO[];
+    squares: XorO[][];
     nextState: XorO;
 }
 
@@ -27,11 +27,11 @@ class Board extends React.Component<{},BoardState> {
     constructor()
     {
         super({});
-        this.state = { squares: Array<XorO>(9).fill(""), nextState: "X" }
+        this.state = { squares: Array<XorO[]>(3).fill(Array<XorO>(3).fill("")), nextState: "X" }
     }
 
-    renderSquare(i: number) {
-        return <Square xorO={this.state.squares[i]} onClick={ () => this.onCardClicked(i) }/>;
+    renderSquare(row: number, column: number) {
+        return <Square xorO={this.state.squares[row][column]} onClick={ () => this.onCardClicked(row, column) }/>;
     }
 
     render() {
@@ -40,30 +40,35 @@ class Board extends React.Component<{},BoardState> {
             <div>
                 <div className="status">{status}</div>
                 <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
+                    {this.renderSquare(0,0)}
+                    {this.renderSquare(0,1)}
+                    {this.renderSquare(0,2)}
                 </div>
                 <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
+                    {this.renderSquare(1,0)}
+                    {this.renderSquare(1,1)}
+                    {this.renderSquare(1,2)}
                 </div>
                 <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+                    {this.renderSquare(2,0)}
+                    {this.renderSquare(2,1)}
+                    {this.renderSquare(2,2)}
                 </div>
             </div>
         );
     }
 
-    onCardClicked( i: number )
+    // private isThereAWinner(): XorO 
+    // {
+
+    // }
+
+    onCardClicked( row: number, column: number )
     {
-        if (this.state.squares[i] != "" )
+        if (this.state.squares[row][column] != "" )
             return;
 
-        this.setNextStateToBoard(i);
+        this.setNextStateToBoard(row, column);
         this.toogleNextState();
     }
 
@@ -72,9 +77,11 @@ class Board extends React.Component<{},BoardState> {
         this.setState({ nextState: nextState });
     }
 
-    private setNextStateToBoard(i: number) {
-        const squares = this.state.squares.slice();
-        squares[i] = this.state.nextState;
+    private setNextStateToBoard(row: number, column: number) {
+        const squares = this.state.squares.map( (arr: XorO[]) => {
+            return arr.slice();
+        });// this.state.squares.slice();
+        squares[row][column] = this.state.nextState;
         this.setState({ squares: squares });
     }
 }
