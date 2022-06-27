@@ -6,12 +6,15 @@ function TextWall( {rmModel, id}: TextWallProperties  ) {
     let wall = getWallForId(rmModel, id);
     let wallLineStart = wall.wallLine.start;
     let wallLineEnd = wall.wallLine.end;
+    let wallHeight = wall.height;
     return (
         <>
         Wall with Id: {id}
         <ul>
             <li>startingHeight: { getStartingHeightOfWall(rmModel, id) }</li>
-            <li><TextPoint3D point={wallLineStart}/> </li>
+            <li>height of Wall: {wallHeight} </li>
+            <li>start point: <TextPoint3D point={wallLineStart}/> </li>
+            <li>end point: <TextPoint3D point={wallLineEnd} /> </li>            
         </ul>
         </>
     );
@@ -19,7 +22,7 @@ function TextWall( {rmModel, id}: TextWallProperties  ) {
 
 function TextPoint3D( {point}: {point: Point3D} )
 {
-    return( <> x: {point.x}, y: {point.y}, z: {point.z} </>)
+    return( <> {point.x}, {point.y}, {point.z} </>)
 }
 
 function getWallForId( rmModel: RenderModel_LaW, wallId: number )
