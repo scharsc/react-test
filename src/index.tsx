@@ -1,10 +1,11 @@
 import React from "react";
-import { createRoot } from 'react-dom/client'
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom/client'
 import "./mystyle.css"
 import DataDesignApp from "./components/DataDesignapp";
 
-ReactDOM.render(
-    <DataDesignApp />,
-    document.getElementById("root")
-);
+const container = document.getElementById('root')!;
+const root = ReactDOM.createRoot(container);
+
+// Initial render
+root.render(<DataDesignApp/>);
+
