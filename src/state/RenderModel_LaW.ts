@@ -1,15 +1,10 @@
 
-interface DbElement
-{
-    keyInDB: number;
-}
-
-interface RMLevel extends DbElement
+interface RMLevel 
 {
     height: number;
 }
 
-interface RMWall extends DbElement
+interface RMWall
 {
     wallLine: LineSegment3D;
     baseLevel: number; //curently only one Level. Later render model might contain 
@@ -17,8 +12,10 @@ interface RMWall extends DbElement
     height: number;
 }
 
+type Id = number;
+
 interface RenderModel_LaW // a render model
 {
-    levels: RMLevel[],
-    walls: RMWall[]
+    levels: Map<Id, RMLevel>,
+    walls: Map<Id, RMWall>
 }
