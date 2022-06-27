@@ -2,12 +2,24 @@ import React from "react";
 import ReactDOM from 'react-dom/client'
 import "./mystyle.css"
 import DataDesignApp from "./components/DataDesignapp";
-import { renderModel_LaW_state1 } from "./state/LaW-State1";
+import { renderModel_LaW_state1, renderModel_LaW_state2 } from "./state/LaW-State1";
 
-const container = document.getElementById('root')!;
-const root = ReactDOM.createRoot(container);
+const textContainer = document.getElementById('root')!;
 
-let renderModel = renderModel_LaW_state1;
-
+const textRenderRoot = ReactDOM.createRoot(textContainer);
 // Initial render
-root.render(<DataDesignApp renderModel={renderModel_LaW_state1}/>);
+textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state1} />);
+
+
+var buttonState = true;
+const button = document.getElementById('button')!;
+button.addEventListener("click", 
+() =>   
+{
+    buttonState = !buttonState;
+    if( buttonState )
+        textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state2} />);
+    else
+        textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state1} />);
+}
+);
