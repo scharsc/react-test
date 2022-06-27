@@ -1,19 +1,3 @@
-
-let level1: RMLevel = {
-    keyInDB: 1,
-    height: 2.1 
-};
-
-let levels: RMLevel[] = [{
-    keyInDB: 1,
-    height: 2.1
-}, 
-{
-    keyInDB: 1,
-    height: 2.1
-}
-]
-
 export const levelAndWalls_State1 : RenderModel_LaW = {
     levels: [
         {
@@ -38,3 +22,4 @@ export const levelAndWalls_State1 : RenderModel_LaW = {
         }
     ]
 }
+
