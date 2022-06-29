@@ -4,7 +4,25 @@ interface RMLevel
     height: number;
 }
 
-interface RMWall
+export enum LevelOfDetail {
+    Coarse, //shows no colors
+    Fine    //shows colors
+}
+
+export enum Color {
+    eBlack,
+    eWhite,
+    eRed,
+    eBlue,
+    eGreen
+}
+
+interface RMElement
+{
+    color: Color
+}
+
+interface RMWall extends RMElement
 {
     wallLine: LineSegment3D;
     baseLevel: number; //curently only one Level. Later render model might contain 
@@ -14,8 +32,9 @@ interface RMWall
 
 type Id = number;
 
-interface RenderModel_LaW // a render model
+export interface RenderModel_LaW // a render model
 {
+    levelOfDetail: LevelOfDetail,
     levels: Map<Id, RMLevel>,
     walls: Map<Id, RMWall>
 }

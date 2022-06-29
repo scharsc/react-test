@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Color, LevelOfDetail, RenderModel_LaW } from '../state/RenderModel_LaW';
 import TextWall, { TextWallProperties } from './TextWall';
 
 function DataDesignApp( {renderModel}: {renderModel: RenderModel_LaW} )
@@ -30,7 +31,9 @@ function extractWallProperties(rmModel: RenderModel_LaW, id: number): TextWallPr
     let wallHeight = wall.height;
     let startHeight = getStartingHeightOfWall(rmModel, id);
     let endHeight = startHeight + wallHeight;
+    let levelOfDetail = rmModel.levelOfDetail;
     return {
+        color: rmModel.levelOfDetail === LevelOfDetail.Coarse ? Color.eBlack : wall.color,
         startWallHeight: startHeight,
         endWallHeight: endHeight,
         wallLineSeg: wall.wallLine

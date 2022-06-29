@@ -18,8 +18,8 @@ button.addEventListener("click",
 {
     buttonState = !buttonState;
     if( buttonState )
-        textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state2} />);
-    else
         textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state1} />);
+    else
+        textRenderRoot.render(<DataDesignApp renderModel={renderModel_LaW_state2} />);
 }
 );

@@ -1,5 +1,7 @@
+import { Color, LevelOfDetail, RenderModel_LaW } from "./RenderModel_LaW"
 
 export const renderModel_LaW_state1 : RenderModel_LaW = {
+    levelOfDetail: LevelOfDetail.Coarse,
     levels: new Map([
         [1, {
                 height: 1.0
@@ -9,6 +11,7 @@ export const renderModel_LaW_state1 : RenderModel_LaW = {
     ]),
     walls: new Map([
         [2, {
+            color: Color.eRed,
             baseLevel: 1,
             baseOffset: 0.1,
             height: 2.2,
@@ -16,6 +19,7 @@ export const renderModel_LaW_state1 : RenderModel_LaW = {
         }
         ],
         [3, {
+            color: Color.eRed,
             baseLevel: 1,
             baseOffset: 0.1,
             height: 2.2,
@@ -23,6 +27,7 @@ export const renderModel_LaW_state1 : RenderModel_LaW = {
         }
         ],
         [5, {
+            color: Color.eRed,
             baseLevel: 4,
             baseOffset: 0.1,
             height: 2.2,
@@ -33,15 +38,17 @@ export const renderModel_LaW_state1 : RenderModel_LaW = {
 }
 
 export const renderModel_LaW_state2: RenderModel_LaW = {
+    levelOfDetail: LevelOfDetail.Fine,
     levels: new Map([
         [1, {
-            height: 2.4
+            height: 1.0
         }
         ],
         [4, { height: 3.0 }]
     ]),
     walls: new Map([
         [2, {
+            color: Color.eGreen,
             baseLevel: 1,
             baseOffset: 0.1,
             height: 2.2,
@@ -49,6 +56,7 @@ export const renderModel_LaW_state2: RenderModel_LaW = {
         }
         ],
         [3, {
+            color: Color.eRed,
             baseLevel: 1,
             baseOffset: 0.1,
             height: 2.2,
@@ -56,6 +64,7 @@ export const renderModel_LaW_state2: RenderModel_LaW = {
         }
         ],
         [5, {
+            color: Color.eRed,
             baseLevel: 4,
             baseOffset: 0.1,
             height: 2.2,
