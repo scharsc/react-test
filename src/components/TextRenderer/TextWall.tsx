@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import { Color } from '../state/RenderModel_LaW';
+import { Color } from '../../state/RenderModel_LaW';
 import TextColor from './TextColor';
 import TextHeight from './TextHeight';
 import TextLineSeg from './TextLineSeg';

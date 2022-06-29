@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Color, LevelOfDetail, RenderModel_LaW } from '../state/RenderModel_LaW';
+import { Color, LevelOfDetail, RenderModel_LaW } from '../../state/RenderModel_LaW';
 import TextWall, { TextWallProperties } from './TextWall';
 
-function DataDesignApp( {renderModel}: {renderModel: RenderModel_LaW} )
+function TextRenderer( {renderModel}: {renderModel: RenderModel_LaW} )
 {
     let walls = Array.from(renderModel.walls).map( ([id, wall]) =>
     {
@@ -54,4 +54,4 @@ function getStartingHeightOfWall(rmModel: RenderModel_LaW, wallId: number) {
 }
 
 
-export default DataDesignApp
+export default TextRenderer
