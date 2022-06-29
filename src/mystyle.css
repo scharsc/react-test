@@ -14,3 +14,16 @@ body{
 body {
     background: white;
 }
+
+#textroot {
+    width: 30%;
+    margin: 0;
+    padding: 0;
+}
+
+#threeroot {
+width: 100%;
+height: 70%;
+    margin: 0;
+        padding: 0;
+}

@@ -1,19 +1,10 @@
 import React, { useState, memo } from 'react';
-import { Color } from '../../state/RenderModel_LaW';
+import { WallProperties } from '../Shared/WallProperties';
 import TextColor from './TextColor';
 import TextHeight from './TextHeight';
 import TextLineSeg from './TextLineSeg';
 
-
-export interface TextWallProperties 
-{ 
-    color: Color,
-    startWallHeight: number, 
-    endWallHeight: number,
-    wallLineSeg: LineSegment3D,
-};
-
-function TextWall({ color, startWallHeight, endWallHeight, wallLineSeg }: TextWallProperties  ) {
+function TextWall({ color, startWallHeight, endWallHeight, wallLineSeg }: WallProperties  ) {
 
     return (
         <>
@@ -28,7 +19,7 @@ function TextWall({ color, startWallHeight, endWallHeight, wallLineSeg }: TextWa
 }
 
 
-function arePropsEqual(prevProps: TextWallProperties, nextProps: TextWallProperties) {
+function arePropsEqual(prevProps: WallProperties, nextProps: WallProperties) {
     return  prevProps.color == nextProps.color &&
             prevProps.startWallHeight === nextProps.startWallHeight &&
             prevProps.endWallHeight === nextProps.endWallHeight ;

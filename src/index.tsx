@@ -24,10 +24,12 @@ button.addEventListener("click",
     if( buttonState )
     {
         textRenderRoot.render(<TextRenderer renderModel={renderModel_LaW_state1} />);
+        threeRenderRoot.render(<R3FApp renderModel={renderModel_LaW_state1} />);
     }
     else
     {
         textRenderRoot.render(<TextRenderer renderModel={renderModel_LaW_state2} />);
+        threeRenderRoot.render(<R3FApp renderModel={renderModel_LaW_state2} />);
     }
 }
 );

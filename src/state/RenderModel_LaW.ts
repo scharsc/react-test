@@ -1,3 +1,4 @@
+import { LineSegment3D } from "./LineSegment3D";
 
 interface RMLevel 
 {
