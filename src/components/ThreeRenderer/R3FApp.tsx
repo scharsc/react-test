@@ -3,6 +3,7 @@ import * as React from 'react'
 import { useRef, useState } from 'react'
 import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber'
 import { RenderModel_LaW } from '../../state/RenderModel_LaW';
+import Box from './Wall';
 
 
 

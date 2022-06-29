@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import * as React from 'react'
 import { useRef, useState } from 'react'
 import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber'
-import { RenderModel_LaW } from '../../state/RenderModel_LaW';
 
 function Box(props: JSX.IntrinsicElements['mesh']) {
     const ref = useRef<THREE.Mesh>(null!);
@@ -29,3 +28,5 @@ function Box(props: JSX.IntrinsicElements['mesh']) {
         </mesh>
     )
 }
+
+export default Box;
