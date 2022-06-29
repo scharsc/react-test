@@ -13,7 +13,7 @@ const threeRenderRoot = ReactDOM.createRoot(threeContainer);
 
 // Initial render
 textRenderRoot.render(<TextRenderer renderModel={renderModel_LaW_state1} />);
-threeRenderRoot.render(<R3FApp renderModel=renderModel_LaW_state1 /> );
+threeRenderRoot.render(<R3FApp renderModel={renderModel_LaW_state1} /> );
 
 var buttonState = true;
 const button = document.getElementById('button')!;
