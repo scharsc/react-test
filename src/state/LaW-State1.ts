@@ -43,13 +43,13 @@ export const renderModel_LaW_state1 : RenderModel_LaW = {
 }
 
 export const renderModel_LaW_state2: RenderModel_LaW = {
-    levelOfDetail: LevelOfDetail.Fine,
+    levelOfDetail: LevelOfDetail.Coarse,
     levels: new Map([
         [1, {
             height: 2.0
         }
         ],
-        [4, { height: 4.3 }]
+        [4, { height: 4.0 }]
     ]),
     walls: new Map([
         [2, {

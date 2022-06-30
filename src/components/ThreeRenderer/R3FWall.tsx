@@ -24,7 +24,7 @@ function Wall( props: WallProperties ) {
     let length = props.wallLineSeg.lenght();
     let rotation = props.wallLineSeg.angleToX();
     return (
-        <mesh position={midPoint} rotation={[0, 0, 0]}>
+        <mesh position={midPoint} rotation={[0, 0, rotation]}>
             <boxGeometry args={[length, 0.3,  height]} />
             <meshStandardMaterial color="black" />
         </mesh>
