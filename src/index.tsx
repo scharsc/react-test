@@ -15,6 +15,24 @@ const threeRenderRoot = ReactDOM.createRoot(threeContainer);
 textRenderRoot.render(<TextRenderer renderModel={renderModel_LaW_state1} />);
 threeRenderRoot.render(<R3FApp renderModel={renderModel_LaW_state1} /> );
 
+export const AllLengthUnits = ["mm", "cm", "m", "in", "ft", "yd", "in US", "ft US", "yd US"] as const;
+export type LengthUnit = (typeof AllLengthUnits)[number];
+
+const mapLengthUnitToScaleFactor: Map<LengthUnit, number> = new Map( [
+    [ "mm", 0.001 ],
+    ["m", 1.0],
+    //[ "pc", 2.344] /* illigal */
+    ]
+ )
+
+const mapLengthUnitToLocalizationKey: Map<LengthUnit, string> =new Map( [
+    ["mm", "UNIT_MM"]
+]);
+
+const scaleToMeter = (sourceUnit: LengthUnit) => mapLengthUnitToScaleFactor.get( sourceUnit )!;
+const LengthUnitTranslationKey = (sourceUnit: LengthUnit) => mapLengthUnitToLocalizationKey.get( sourceUnit )!;
+
+
 var buttonState = true;
 const button = document.getElementById('button')!;
 button.addEventListener("click", 
